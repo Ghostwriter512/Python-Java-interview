@@ -1,3 +1,5 @@
+一次失败的多线程尝试
+=========================
 ```
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.FileFilterUtils;
@@ -45,3 +47,11 @@ class WebDownLoader
         }
 }
 ```
+
+##   从一次尝试看多线程实现流程
+
+&#8195;&#8195;&#8195;暂且把包含主要结构和main函数的类称为主类，把存放具体实现方法的类称为工具类。
+
+&#8195;&#8195;&#8195;主类可以通过继承Thread类来实现多线程，继承后必须要对run()进行重写，在run()中写入想要多线程进行的操作，如本例中在run()内实例化工具类WebDownLoader，并调用其中的downloader方法。主类中在main()中实例化本类，并调用对象下的start()方法，这个start()方法会使得run()中提前写入的操作运行。
+
+
